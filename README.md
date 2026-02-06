@@ -99,4 +99,3 @@ permission from Vedhaan Technology.
 
 This repository represents **executed professional work within a fixed
 timeframe** and may receive documentation updates for clarity or organization.
----
