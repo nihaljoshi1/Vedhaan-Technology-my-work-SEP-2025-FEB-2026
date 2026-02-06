@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine Aroma - Premium Puja Collection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'fashion-primary': '#1a1a1a',
+                        'fashion-accent': '#d4af37',
+                        'fashion-light': '#f5f5f5',
+                        'fashion-dark': '#0a0a0a',
+                        'fashion-gray': '#4a4a4a',
+                        'fashion-light-gray': '#e0e0e0',
+                        'fashion-gold-light': '#f4e8c1',
+                        'fashion-gold-dark': '#b8941f'
+                    },
+                    fontFamily: {
+                        'sans': ['"Helvetica Neue"', 'Arial', 'sans-serif'],
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'elegant': ['"Cormorant Garamond"', 'serif']
+                    },
+                    boxShadow: {
+                        'fashion': '0 4px 20px rgba(0, 0, 0, 0.08)',
+                        'fashion-lg': '0 10px 30px rgba(0, 0, 0, 0.12)',
+                        'fashion-xl': '0 25px 50px rgba(0, 0, 0, 0.25)',
+                        'glow': '0 0 25px rgba(212, 175, 55, 0.4)',
+                        'glow-lg': '0 0 40px rgba(212, 175, 55, 0.6)',
+                        'inner-glow': 'inset 0 0 20px rgba(212, 175, 55, 0.2)',
+                        'gold-glow': '0 0 20px rgba(212, 175, 55, 0.3)',
+                        'luxury': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+                        'text-shimmer': 'textShimmer 4s ease-in-out infinite',
+                        'border-glow': 'borderGlow 3s ease-in-out infinite',
+                        'scale-in': 'scaleIn 0.6s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' }
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.8' }
+                        },
+                        textShimmer: {
+                            '0%': { 'background-position': '-200% center' },
+                            '100%': { 'background-position': '200% center' }
+                        },
+                        borderGlow: {
+                            '0%, 100%': { 'box-shadow': '0 0 10px rgba(212, 175, 55, 0.4)' },
+                            '50%': { 'box-shadow': '0 0 20px rgba(212, 175, 55, 0.8)' }
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        }
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #d4af37 0%, #f4e8c1 50%, #b8941f 100%)',
+                        'dark-gradient': 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)',
+                        'light-gradient': 'linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)',
+                        'dark-gradient': 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .hero-section {
+            height: 85vh;
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .carousel-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out, transform 1.5s ease-in-out;
+            transform: scale(1.05);
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 1;
+        }
+        
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .gradient-overlay {
+            background: linear-gradient(135deg, 
+                rgba(10, 10, 10, 0.85) 0%, 
+                rgba(26, 26, 26, 0.7) 50%, 
+                rgba(212, 175, 55, 0.2) 100%);
+        }
+        
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e8c1 50%, #b8941f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-effect-dark {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .text-shadow-lg {
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-dot {
+            transition: all 0.4s ease;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+        
+        .carousel-dot.active {
+            background: #d4af37;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        }
+        
+        .floating-element {
+            animation: float 10s ease-in-out infinite;
+        }
+        
+        .floating-element-2 {
+            animation: float 12s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        
+        .floating-element-3 {
+            animation: float 14s ease-in-out infinite;
+            animation-delay: 4s;
+        }
+        
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.7s;
+            z-index: 1;
+        }
+        
+        .product-card:hover::before {
+            left: 100%;
+        }
+        
+        .product-image {
+            transition: transform 1s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e8c1 50%, #b8941f 100%);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s;
+        }
+        
+        .btn-gold:hover::before {
+            left: 100%;
+        }
+        
+        .btn-gold:hover {
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        .feature-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-badge::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(212, 175, 55, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+        
+        .feature-badge:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 0 auto;
+            width: 80%;
+        }
+        
+        .ornamental-border {
+            position: relative;
+        }
+        
+        .ornamental-border::before, .ornamental-border::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 Q15,30 30,50 Q15,70 0,50' fill='%23d4af37' opacity='0.3'/%3E%3C/svg%3E");
+            background-repeat: repeat-y;
+        }
+        
+        .ornamental-border::before {
+            left: 0;
+        }
+        
+        .ornamental-border::after {
+            right: 0;
+            transform: scaleX(-1);
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #f4e8c1;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px #f4e8c1;
+            animation: sparkle 4s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 70vh;
+                min-height: 500px;
+            }
+            
+            .mobile-hidden {
+                display: none;
+            }
+        }
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .luxury-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white;
+            border-radius: 20px;
+        }
+        
+        .luxury-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #b8941f, #d4af37);
+            z-index: 10;
+        }
+        
+        .luxury-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+            z-index: 1;
+        }
+        
+        .luxury-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #1a1a1a;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .gold-button {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #1a1a1a;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gold-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: all 0.6s;
+        }
+        
+        .gold-button:hover::before {
+            left: 100%;
+        }
+        
+        .gold-button:hover {
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .dark-button {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-button:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .price-tag {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .discount-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #b8941f, #d4af37);
+            border-radius: 3px;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 50%, #f5f5f5 100%);
+        }
+        .gold-gradient {
+            background: linear-gradient(45deg, #d4af37, #f7ef8a, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: white;
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+        .product-card:hover::before {
+            opacity: 1;
+        }
+        .product-image {
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background-size: cover;
+            background-position: center;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .premium-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        .premium-badge::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.5), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        .floating-element-delay {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        .icon-bg {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .testimonial-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+
+</head>
+<body class="bg-fashion-light">
+
+
+    <!-- Hero Section with Carousel -->
+    <section class="hero-section relative overflow-hidden">
+        <!-- Sparkle Effects -->
+        <div class="sparkle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="sparkle" style="top: 60%; left: 85%; animation-delay: 1s;"></div>
+        <div class="sparkle" style="top: 80%; left: 15%; animation-delay: 2s;"></div>
+        <div class="sparkle" style="top: 40%; left: 90%; animation-delay: 3s;"></div>
+        
+        <!-- Floating decorative elements -->
+        <div class="absolute top-20 left-5 w-10 h-10 rounded-full bg-fashion-accent opacity-10 floating-element z-0"></div>
+        <div class="absolute bottom-40 right-10 w-6 h-6 rounded-full bg-fashion-light opacity-20 floating-element-2 z-0"></div>
+        <div class="absolute top-1/3 left-1/4 w-8 h-8 rounded-full bg-fashion-accent opacity-15 floating-element-3 z-0"></div>
+        
+        <!-- Carousel Container -->
+        <div class="carousel-container">
+            <!-- Slide 1 -->
+            <div class="carousel-slide active">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                    <source media="(min-width: 769px)" srcset="https://cdn.shopify.com/s/files/1/0754/5356/3101/files/4_835f7e3d-702f-4f3a-9327-d34319990fe0.png?v=1760336462">
+                    <img src="" 
+                         alt="Premium Puja Collection" 
+                         class="carousel-image">
+                </picture>
+                <div class="absolute inset-0 gradient-overlay"></div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="https://images.unsplash.com/photo-1600334089648-949c8c145d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                    <source media="(min-width: 769px)" srcset="https://cdn.shopify.com/s/files/1/0754/5356/3101/files/5_6141b060-5fe4-48f9-81be-07a81aca2cc6.png?v=1760336462">
+                    <img src="img/hero-main.png" 
+                         alt="Sandalwood Incense" 
+                         class="carousel-image">
+                </picture>
+                <div class="absolute inset-0 gradient-overlay"></div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="https://images.unsplash.com/photo-1628669688053-3e4c8e57e8a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                    <source media="(min-width: 769px)" srcset="https://cdn.shopify.com/s/files/1/0754/5356/3101/files/banner5.png?v=1760337927">
+                    <img src="https://images.unsplash.com/photo-1628669688053-3e4c8e57e8a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Puja Accessories" 
+                         class="carousel-image">
+                </picture>
+                <div class="absolute inset-0 gradient-overlay"></div>
+            </div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="absolute inset-0 z-20 flex items-center">
+            <div class="container mx-auto px-6 md:px-10">
+                <div class="max-w-2xl animate-slide-up">
+                    <div class="inline-block mb-4">
+                        <span class="text-fashion-accent font-elegant font-medium text-lg px-4 py-2 rounded-full glass-effect-dark">Premium Puja Collection</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-serif font-bold text-fashion-light mb-6 leading-tight text-shadow-lg">
+                        Divine Aroma for<br>
+                        <span class="gold-gradient-text">Sacred Moments</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-fashion-light-gray mb-8 leading-relaxed animate-fade-in">
+                        Experience the purity and fragrance of our handcrafted dhup agarbatti and premium puja essentials. 
+                        Made with natural ingredients to elevate your spiritual practice.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                        <a href="#shop" class="btn-gold text-fashion-dark font-semibold py-3 px-8 rounded-lg flex items-center justify-center text-lg">
+                            <span>Shop Collection</span>
+                            <i class="fas fa-arrow-right ml-3"></i>
+                        </a>
+                        <a href="https://granthagarrbatti.co/pages/aboutgranth" class="border-2 border-fashion-light text-fashion-light hover:bg-fashion-light hover:text-fashion-dark font-medium py-3 px-8 rounded-lg transition duration-300 glass-effect hover-lift text-lg">
+                            Discover Our Story
+                        </a>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+        
+        <!-- Carousel Controls -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex space-x-4">
+            <button class="carousel-dot" data-slide="0"></button>
+            <button class="carousel-dot" data-slide="1"></button>
+            <button class="carousel-dot" data-slide="2"></button>
+        </div>
+        
+        <!-- Carousel Arrows -->
+        <button class="absolute left-6 top-1/2 transform -translate-y-1/2 z-30 text-fashion-light hover:text-fashion-accent transition duration-300 carousel-prev hidden md:flex items-center justify-center p-4 rounded-full glass-effect feature-badge">
+            <i class="fas fa-chevron-left text-xl"></i>
+        </button>
+        <button class="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 text-fashion-light hover:text-fashion-accent transition duration-300 carousel-next hidden md:flex items-center justify-center p-4 rounded-full glass-effect feature-badge">
+            <i class="fas fa-chevron-right text-xl"></i>
+        </button>
+        
+    </section>
+
+
+    <!-- products -->
+    <section id="shop" class="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-white to-fasion-light relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="floating-element w-64 h-64 bg-fasion-accent top-10 -left-20"></div>
+        <div class="floating-element w-48 h-48 bg-fasion-accent bottom-20 -right-16"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl md:text-5xl font-serif font-bold text-fasion-primary mb-4">
+                    Our Premium Collection
+                </h2>
+                <p class="text-lg text-fasion-gray max-w-3xl mx-auto leading-relaxed">
+                    Exquisitely curated collections of our finest dhup, agarbatti, and puja essentials. 
+                    Perfect for gifting to loved ones on special occasions with an aura of divine elegance.
+                </p>
+            </div>
+
+            <!-- Gift Boxes Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Gift Box 1 - Divine Blessings -->
+                <div class="luxury-card group">
+                    <div class="luxury-badge">
+                        <i class="fas fa-crown mr-1"></i> BEST SELLER
+                    </div>
+                    
+                    <!-- Product Image -->
+                    <div class="product-image bg-gradient-to-br from-amber-100 to-amber-50">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/ScentVent_Darkside_1_200x200.webp?v=1756706139" 
+                             alt="Divine Blessings Gift Box" 
+                             class="w-full h-full object-cover duration-500 relative">
+                        
+                        <!-- Overlay Content -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 text-white">
+                            <h3 class="font-serif font-bold text-xl mb-1">Darkside Luxury Perfume</h3>
+                            <p class="text-sm opacity-90">Luxury Collection</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-serif font-bold text-fasion-primary mb-2">Darkside Luxury Perfume</h3>
+                                <div class="flex items-center text-amber-500 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span class="text-fasion-gray text-sm ml-2">4.7 (128 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-fasion-gray text-sm mb-4 leading-relaxed">
+                            Romantic and long-lasting red perfume – “Love Forever”. Perfect for gifting or daily freshness.
+                        <!-- Features -->
+                        <div class="mb-6">
+                            <br>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                12 Sandalwood Incense Sticks
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                8 Floral Dhoop Cones
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                4 Handcrafted Diyas
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing and CTA -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="price-tag">
+                                <span class="text-2xl font-bold">₹199</span>
+                                <span class="text-sm text-fasion-light-gray line-through ml-2">₹349</span>
+                            </div>
+                            <span class="discount-badge">19% OFF</span>
+                        </div>
+                        
+                        <a href="https://granthagarrbatti.co/products/darkside-luxury-perfume" class="gold-button w-full py-3 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            View Product
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gift Box 2 - Festival Celebration -->
+                <div class="luxury-card group">
+                    <div class="luxury-badge" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                        <i class="fas fa-fire mr-1"></i> FESTIVAL SPECIAL
+                    </div>
+                    
+                    <!-- Product Image -->
+                    <div class="product-image bg-gradient-to-br from-red-100 to-orange-50">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/ScentVent_No7_1_200x200.webp?v=1755597509" 
+                             alt="Festival Celebration Gift Box" 
+                             class="w-full h-full object-cover duration-500 relative">
+                        
+                        <!-- Overlay Content -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 text-white">
+                            <h3 class="font-serif font-bold text-xl mb-1">No 7 Luxury Perfume</h3>
+                            <p class="text-sm opacity-90">Perfect for Special Occasions</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-serif font-bold text-fasion-primary mb-2">No 7 Luxury Perfume</h3>
+                                <div class="flex items-center text-amber-500 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="text-fasion-gray text-sm ml-2">5.0 (96 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-fasion-gray text-sm mb-4 leading-relaxed">
+                            Romantic and long-lasting red perfume – “Love Forever”. Perfect for gifting or daily freshness.
+                        </p>
+                        
+                        <!-- Features -->
+                        <div class="mb-6">
+                            <br>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                15 Special Edition Incense Sticks
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                6 Decorative Diyas
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                10 Aromatic Dhoop Cones
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing and CTA -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="price-tag">
+                                <span class="text-2xl font-bold">₹199</span>
+                                <span class="text-sm text-fasion-light-gray line-through ml-2">₹349</span>
+                            </div>
+                            <span class="discount-badge">20% OFF</span>
+                        </div>
+                        
+                        <a href="https://granthagarrbatti.co/products/scentvent-no-7-luxury-perfume" class="gold-button w-full py-3 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            View Product
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gift Box 3 - Meditation Essentials -->
+                <div class="luxury-card group">
+                    <div class="luxury-badge" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                        <i class="fas fa-spa mr-1"></i> NEW ARRIVAL
+                    </div>
+                    
+                    <!-- Product Image -->
+                    <div class="product-image bg-gradient-to-br from-purple-100 to-indigo-50">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/blue_1024x1024.png?v=1756704866" 
+                             alt="Meditation Essentials Gift Box" 
+                             class="w-full h-full object-cover duration-500 relative">
+                        
+                        <!-- Overlay Content -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 text-white">
+                            <h3 class="font-serif font-bold text-xl mb-1">Blue Luxury Perfume</h3>
+                            <p class="text-sm opacity-90">Calming & Focus Enhancing</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-serif font-bold text-fasion-primary mb-2">Blue Luxury Perfume</h3>
+                                <div class="flex items-center text-amber-500 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="text-fasion-gray text-sm ml-2">4.3 (64 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-fasion-gray text-sm mb-4 leading-relaxed">
+                            Romantic and long-lasting red perfume – “Love Forever”. Perfect for gifting or daily freshness.
+                        </p>
+                        
+                        <!-- Features -->
+                        <div class="mb-6">
+                            <br>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                10 Lavender Infused Incense Sticks
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                5 Frankincense Resin Dhoop Cones
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                Meditation Bell & Singing Bowl Set
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing and CTA -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="price-tag">
+                                <span class="text-2xl font-bold">₹199</span>
+                                <span class="text-sm text-fasion-accent font-semibold ml-2">Premium Quality</span>
+                            </div>
+                            <span class="discount-badge" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);">EXCLUSIVE</span>
+                        </div>
+                        
+                        <a href="https://granthagarrbatti.co/products/scentvent-blue-luxury-perfume-1" class="gold-button w-full py-3 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            View Product
+                        </a>
+                    </div>
+                </div>
+                <!-- Gift Box 4 - Divine Blessings -->
+                <div class="luxury-card group">
+                    <div class="luxury-badge">
+                        <i class="fas fa-crown mr-1"></i> BEST SELLER
+                    </div>
+                    
+                    <!-- Product Image -->
+                    <div class="product-image bg-gradient-to-br from-amber-100 to-amber-50">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/harmony-20ml_1024x1024.png?v=1756704603" 
+                             alt="Divine Blessings Gift Box" 
+                             class="w-full h-full object-cover duration-500 relative">
+                        
+                        <!-- Overlay Content -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 text-white">
+                            <h3 class="font-serif font-bold text-xl mb-1">Harmony Luxury Perfume</h3>
+                            <p class="text-sm opacity-90">Luxury Collection</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-serif font-bold text-fasion-primary mb-2">Harmony Luxury Perfume</h3>
+                                <div class="flex items-center text-amber-500 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span class="text-fasion-gray text-sm ml-2">4.7 (128 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-fasion-gray text-sm mb-4 leading-relaxed">
+                            Romantic and long-lasting red perfume – “Love Forever”. Perfect for gifting or daily freshness.
+                        <!-- Features -->
+                        <div class="mb-6">
+                            <br>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                12 Sandalwood Incense Sticks
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                8 Floral Dhoop Cones
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                4 Handcrafted Diyas
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing and CTA -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="price-tag">
+                                <span class="text-2xl font-bold">₹199</span>
+                                <span class="text-sm text-fasion-light-gray line-through ml-2">₹349</span>
+                            </div>
+                            <span class="discount-badge">19% OFF</span>
+                        </div>
+                        
+                        <a href="https://granthagarrbatti.co/products/harmony-luxury-perfume" class="gold-button w-full py-3 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            View Product
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gift Box 5 - Festival Celebration -->
+                <div class="luxury-card group">
+                    <div class="luxury-badge" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                        <i class="fas fa-fire mr-1"></i> FESTIVAL SPECIAL
+                    </div>
+                    
+                    <!-- Product Image -->
+                    <div class="product-image bg-gradient-to-br from-red-100 to-orange-50">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/sv-no6_1024x1024.png?v=1756704971" 
+                             alt="Festival Celebration Gift Box" 
+                             class="w-full h-full object-cover duration-500 relative">
+                        
+                        <!-- Overlay Content -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 text-white">
+                            <h3 class="font-serif font-bold text-xl mb-1">No 7 Luxury Perfume</h3>
+                            <p class="text-sm opacity-90">Perfect for Special Occasions</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-serif font-bold text-fasion-primary mb-2">No 7 Luxury Perfume</h3>
+                                <div class="flex items-center text-amber-500 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="text-fasion-gray text-sm ml-2">5.0 (96 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-fasion-gray text-sm mb-4 leading-relaxed">
+                            Romantic and long-lasting red perfume – “Love Forever”. Perfect for gifting or daily freshness.
+                        </p>
+                        
+                        <!-- Features -->
+                        <div class="mb-6">
+                            <br>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                15 Special Edition Incense Sticks
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                6 Decorative Diyas
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                10 Aromatic Dhoop Cones
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing and CTA -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="price-tag">
+                                <span class="text-2xl font-bold">₹499</span>
+                                <span class="text-sm text-fasion-light-gray line-through ml-2">₹799</span>
+                            </div>
+                            <span class="discount-badge">20% OFF</span>
+                        </div>
+                        
+                        <a href="https://granthagarrbatti.co/products/scentvent-sv-no-6-luxury-perfume" class="gold-button w-full py-3 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            View Product
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gift Box 6 - Meditation Essentials -->
+                <div class="luxury-card group">
+                    <div class="luxury-badge" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                        <i class="fas fa-spa mr-1"></i> NEW ARRIVAL
+                    </div>
+                    
+                    <!-- Product Image -->
+                    <div class="product-image bg-gradient-to-br from-purple-100 to-indigo-50">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/loveorever_1024x1024.png?v=1756704786" 
+                             alt="Meditation Essentials Gift Box" 
+                             class="w-full h-full object-cover duration-500 relative">
+                        
+                        <!-- Overlay Content -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 text-white">
+                            <h3 class="font-serif font-bold text-xl mb-1">Love Forever Luxury Perfume</h3>
+                            <p class="text-sm opacity-90">Calming & Focus Enhancing</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-serif font-bold text-fasion-primary mb-2">Love Forever Luxury Perfume</h3>
+                                <div class="flex items-center text-amber-500 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="text-fasion-gray text-sm ml-2">4.3 (64 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-fasion-gray text-sm mb-4 leading-relaxed">
+                            Romantic and long-lasting red perfume – “Love Forever”. Perfect for gifting or daily freshness.
+                        </p>
+                        
+                        <!-- Features -->
+                        <div class="mb-6">
+                            <br>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                10 Lavender Infused Incense Sticks
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                5 Frankincense Resin Dhoop Cones
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                Meditation Bell & Singing Bowl Set
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing and CTA -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="price-tag">
+                                <span class="text-2xl font-bold">₹499</span>
+                                <span class="text-sm text-fasion-accent font-semibold ml-2">Premium Quality</span>
+                            </div>
+                            <span class="discount-badge" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);">EXCLUSIVE</span>
+                        </div>
+                        
+                        <a href="https://granthagarrbatti.co/products/scentvent-love-forever-luxury-perfume" class="gold-button w-full py-3 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            View Product
+                        </a>
+                    </div>
+                </div>
+                <!-- Gift Box 7 - Divine Blessings -->
+                <div class="luxury-card group">
+                    <div class="luxury-badge">
+                        <i class="fas fa-crown mr-1"></i> BEST SELLER
+                    </div>
+                    
+                    <!-- Product Image -->
+                    <div class="product-image bg-gradient-to-br from-amber-100 to-amber-50">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/briht-50ml_1024x1024.png?v=1755589002" 
+                             alt="Divine Blessings Gift Box" 
+                             class="w-full h-full object-cover duration-500 relative">
+                        
+                        <!-- Overlay Content -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 text-white">
+                            <h3 class="font-serif font-bold text-xl mb-1">Bright Luxury Perfume</h3>
+                            <p class="text-sm opacity-90">Luxury Collection</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-serif font-bold text-fasion-primary mb-2">Bright Luxury Perfume</h3>
+                                <div class="flex items-center text-amber-500 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span class="text-fasion-gray text-sm ml-2">4.7 (128 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-fasion-gray text-sm mb-4 leading-relaxed">
+                            Romantic and long-lasting red perfume – “Love Forever”. Perfect for gifting or daily freshness.
+                        <!-- Features -->
+                        <div class="mb-6">
+                            <br>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                12 Sandalwood Incense Sticks
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                8 Floral Dhoop Cones
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                4 Handcrafted Diyas
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing and CTA -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="price-tag">
+                                <span class="text-2xl font-bold">₹499</span>
+                                <span class="text-sm text-fasion-light-gray line-through ml-2">₹799</span>
+                            </div>
+                            <span class="discount-badge">19% OFF</span>
+                        </div>
+                        
+                        <a href="https://granthagarrbatti.co/products/scentvent-bright" class="gold-button w-full py-3 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            View Product
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- gifts section -->
+
+    <section class="min-h-screen bg-gradient-to-br from-white to-fashion-light-gray/20 py-20">
+    <div class="container mx-auto px-4">
+        <!-- Enhanced Header -->
+        <div class="text-center mb-20">
+            <div class="inline-flex items-center gap-4 mb-6">
+                <div class="w-16 h-0.5 bg-fashion-accent"></div>
+                <span class="text-fashion-accent font-light tracking-widest text-sm">EXCLUSIVE COLLECTIONS</span>
+                <div class="w-16 h-0.5 bg-fashion-accent"></div>
+            </div>
+            <h2 class="text-6xl font-serif font-light text-fashion-dark mb-6">Signature Fragrances</h2>
+            <p class="text-fashion-gray text-lg max-w-2xl mx-auto leading-relaxed">
+                Discover our meticulously crafted scents, each telling a unique story of luxury and sophistication
+            </p>
+        </div>
+
+        <!-- Enhanced Product Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            
+            <!-- Product 1 with Enhanced UI -->
+            <div class="group relative bg-white rounded-3xl p-8 shadow-fashion hover:shadow-fashion-lg transition-all duration-500 border border-fashion-light-gray/30">
+                <div class="relative mb-6">
+                    <div class="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-fashion-light-gray/40 to-fashion-light-gray/10">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/c3_5d76a03d-4665-4d72-b48e-b277db914cea.png?v=1760360649&width=360" 
+                             alt="Noir Essence" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-fashion-accent/90 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">BESTSELLER</span>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-6">
+                    <h3 class="font-serif text-2xl text-fashion-primary mb-3">Noir Essence</h3>
+                    <p class="text-fashion-gray mb-4 font-light leading-relaxed">Dark, mysterious blend of black amber and oud for evening elegance</p>
+                    
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <div class="flex text-fashion-accent">
+                            ★★★★★
+                        </div>
+                        <span class="text-fashion-gray text-sm">(128)</span>
+                    </div>
+                    
+                    <div class="text-fashion-accent text-3xl font-serif mb-2">$189</div>
+                    <div class="text-fashion-gray text-sm mb-4">50ml Eau de Parfum</div>
+                </div>
+
+                <button class="w-full py-4 bg-fashion-primary text-white rounded-xl hover:bg-fashion-accent transition-all duration-300 transform hover:scale-105 font-medium">
+                    Add to Cart
+                </button>
+                
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="bg-white px-4 py-2 rounded-full shadow-fashion text-xs text-fashion-gray">
+                        Free shipping & gift wrapping
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 with Enhanced UI -->
+            <div class="group relative bg-white rounded-3xl p-8 shadow-fashion hover:shadow-fashion-lg transition-all duration-500 border border-fashion-light-gray/30">
+                <div class="relative mb-6">
+                    <div class="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-fashion-light-gray/40 to-fashion-light-gray/10">
+                        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Luminous Bloom" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-fashion-primary/90 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">NEW</span>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-6">
+                    <h3 class="font-serif text-2xl text-fashion-primary mb-3">Luminous Bloom</h3>
+                    <p class="text-fashion-gray mb-4 font-light leading-relaxed">Fresh jasmine and peony notes illuminated by citrus top notes</p>
+                    
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <div class="flex text-fashion-accent">
+                            ★★★★☆
+                        </div>
+                        <span class="text-fashion-gray text-sm">(94)</span>
+                    </div>
+                    
+                    <div class="text-fashion-accent text-3xl font-serif mb-2">$165</div>
+                    <div class="text-fashion-gray text-sm mb-4">50ml Eau de Parfum</div>
+                </div>
+
+                <button class="w-full py-4 bg-fashion-primary text-white rounded-xl hover:bg-fashion-accent transition-all duration-300 transform hover:scale-105 font-medium">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- Product 3 with Enhanced UI -->
+            <div class="group relative bg-white rounded-3xl p-8 shadow-fashion hover:shadow-fashion-lg transition-all duration-500 border border-fashion-light-gray/30">
+                <div class="relative mb-6">
+                    <div class="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-fashion-light-gray/40 to-fashion-light-gray/10">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/c2_faa46715-344c-4695-8b68-1507e0397f6f.png?v=1760360445&width=360" 
+                             alt="Oud Royal" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-fashion-accent/90 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">LUXURY</span>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-6">
+                    <h3 class="font-serif text-2xl text-fashion-primary mb-3">Oud Royal</h3>
+                    <p class="text-fashion-gray mb-4 font-light leading-relaxed">Aged oud wood with saffron and precious amber for regal presence</p>
+                    
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <div class="flex text-fashion-accent">
+                            ★★★★★
+                        </div>
+                        <span class="text-fashion-gray text-sm">(156)</span>
+                    </div>
+                    
+                    <div class="text-fashion-accent text-3xl font-serif mb-2">$225</div>
+                    <div class="text-fashion-gray text-sm mb-4">30ml Pure Parfum</div>
+                </div>
+
+                <button class="w-full py-4 bg-fashion-primary text-white rounded-xl hover:bg-fashion-accent transition-all duration-300 transform hover:scale-105 font-medium">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- Product 4 with Enhanced UI -->
+            <div class="group relative bg-white rounded-3xl p-8 shadow-fashion hover:shadow-fashion-lg transition-all duration-500 border border-fashion-light-gray/30">
+                <div class="relative mb-6">
+                    <div class="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-fashion-light-gray/40 to-fashion-light-gray/10">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/c1_44f37d9e-0013-46f6-b766-a74334082a52.png?v=1760360535&width=360" 
+                             alt="Citrus Zest" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                </div>
+                
+                <div class="text-center mb-6">
+                    <h3 class="font-serif text-2xl text-fashion-primary mb-3">Citrus Zest</h3>
+                    <p class="text-fashion-gray mb-4 font-light leading-relaxed">Vibrant bergamot and grapefruit with green tea and musk base</p>
+                    
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <div class="flex text-fashion-accent">
+                            ★★★★☆
+                        </div>
+                        <span class="text-fashion-gray text-sm">(87)</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-center gap-2 mb-2">
+                        <div class="text-fashion-accent text-3xl font-serif">$145</div>
+                        <div class="text-fashion-gray text-sm line-through">$165</div>
+                    </div>
+                    <div class="text-fashion-gray text-sm mb-4">50ml Eau de Toilette</div>
+                </div>
+
+                <button class="w-full py-4 bg-fashion-primary text-white rounded-xl hover:bg-fashion-accent transition-all duration-300 transform hover:scale-105 font-medium">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- Product 5 with Enhanced UI -->
+            <div class="group relative bg-white rounded-3xl p-8 shadow-fashion hover:shadow-fashion-lg transition-all duration-500 border border-fashion-light-gray/30">
+                <div class="relative mb-6">
+                    <div class="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-fashion-light-gray/40 to-fashion-light-gray/10">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/IMG-20250409-WA0002_1024x1024.jpg?v=1760360803" 
+                             alt="Velvet Rose" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                </div>
+                
+                <div class="text-center mb-6">
+                    <h3 class="font-serif text-2xl text-fashion-primary mb-3">Velvet Rose</h3>
+                    <p class="text-fashion-gray mb-4 font-light leading-relaxed">Damascus rose with velvet musk and patchouli for timeless romance</p>
+                    
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <div class="flex text-fashion-accent">
+                            ★★★★★
+                        </div>
+                        <span class="text-fashion-gray text-sm">(203)</span>
+                    </div>
+                    
+                    <div class="text-fashion-accent text-3xl font-serif mb-2">$195</div>
+                    <div class="text-fashion-gray text-sm mb-4">50ml Eau de Parfum</div>
+                </div>
+
+                <button class="w-full py-4 bg-fashion-primary text-white rounded-xl hover:bg-fashion-accent transition-all duration-300 transform hover:scale-105 font-medium">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- Product 6 with Enhanced UI -->
+            <div class="group relative bg-white rounded-3xl p-8 shadow-fashion hover:shadow-fashion-lg transition-all duration-500 border border-fashion-light-gray/30">
+                <div class="relative mb-6">
+                    <div class="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-fashion-light-gray/40 to-fashion-light-gray/10">
+                        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Ocean Mist" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-fashion-primary/90 text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">FRESH</span>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-6">
+                    <h3 class="font-serif text-2xl text-fashion-primary mb-3">Ocean Mist</h3>
+                    <p class="text-fashion-gray mb-4 font-light leading-relaxed">Marine accord with sea salt, driftwood, and clean white musk</p>
+                    
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <div class="flex text-fashion-accent">
+                            ★★★★☆
+                        </div>
+                        <span class="text-fashion-gray text-sm">(76)</span>
+                    </div>
+                    
+                    <div class="text-fashion-accent text-3xl font-serif mb-2">$175</div>
+                    <div class="text-fashion-gray text-sm mb-4">100ml Eau de Cologne</div>
+                </div>
+
+                <button class="w-full py-4 bg-fashion-primary text-white rounded-xl hover:bg-fashion-accent transition-all duration-300 transform hover:scale-105 font-medium">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!-- testimonials -->
+
+    <section class="bg-fasion-light py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-serif text-fashion-dark mb-4">Fragrance Experiences</h2>
+                <p class="text-fashion-gray max-w-2xl mx-auto text-lg">Discover what our customers are saying about our exquisite collection of perfumes</p>
+            </div>
+
+            <!-- Testimonial Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-fashion-gold-light flex items-center justify-center mr-4">
+                                <i class="fas fa-quote-left text-fashion-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-fashion-dark">Priya Sharma</h4>
+                                <div class="flex text-fashion-accent">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray mb-4">"The Sandalwood Elegance perfume is absolutely divine. It lasts all day and I receive compliments everywhere I go. The perfect blend of traditional and modern scents."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-fashion-gray">Verified Purchase</span>
+                            <span class="text-fashion-accent font-serif">Sandalwood Elegance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-fashion-gold-light flex items-center justify-center mr-4">
+                                <i class="fas fa-quote-left text-fashion-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-fashion-dark">Rahul Mehta</h4>
+                                <div class="flex text-fashion-accent">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray mb-4">"I've tried many premium perfumes, but GranthAgarbatti's Royal Oud is exceptional. The scent evolves beautifully throughout the day and has become my signature fragrance."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-fashion-gray">Verified Purchase</span>
+                            <span class="text-fashion-accent font-serif">Royal Oud</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-fashion-gold-light flex items-center justify-center mr-4">
+                                <i class="fas fa-quote-left text-fashion-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-fashion-dark">Ananya Patel</h4>
+                                <div class="flex text-fashion-accent">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray mb-4">"The Jasmine Bloom perfume captures the essence of fresh flowers perfectly. It's not overpowering yet leaves a beautiful trail. My go-to for special occasions."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-fashion-gray">Verified Purchase</span>
+                            <span class="text-fashion-accent font-serif">Jasmine Bloom</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 4 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-fashion-gold-light flex items-center justify-center mr-4">
+                                <i class="fas fa-quote-left text-fashion-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-fashion-dark">Ananya Patel</h4>
+                                <div class="flex text-fashion-accent">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray mb-4">"The Jasmine Bloom perfume captures the essence of fresh flowers perfectly. It's not overpowering yet leaves a beautiful trail. My go-to for special occasions."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-fashion-gray">Verified Purchase</span>
+                            <span class="text-fashion-accent font-serif">Jasmine Bloom</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 5 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-fashion-gold-light flex items-center justify-center mr-4">
+                                <i class="fas fa-quote-left text-fashion-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-fashion-dark">Ananya Patel</h4>
+                                <div class="flex text-fashion-accent">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray mb-4">"The Jasmine Bloom perfume captures the essence of fresh flowers perfectly. It's not overpowering yet leaves a beautiful trail. My go-to for special occasions."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-fashion-gray">Verified Purchase</span>
+                            <span class="text-fashion-accent font-serif">Jasmine Bloom</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 6 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-fashion-gold-light flex items-center justify-center mr-4">
+                                <i class="fas fa-quote-left text-fashion-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-fashion-dark">Ananya Patel</h4>
+                                <div class="flex text-fashion-accent">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray mb-4">"The Jasmine Bloom perfume captures the essence of fresh flowers perfectly. It's not overpowering yet leaves a beautiful trail. My go-to for special occasions."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-fashion-gray">Verified Purchase</span>
+                            <span class="text-fashion-accent font-serif">Jasmine Bloom</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carousel functionality
+            const carouselSlides = document.querySelectorAll('.carousel-slide');
+            const carouselDots = document.querySelectorAll('.carousel-dot');
+            const prevButton = document.querySelector('.carousel-prev');
+            const nextButton = document.querySelector('.carousel-next');
+            let currentSlide = 0;
+            let autoSlideInterval;
+            
+            // Function to show a specific slide
+            function showSlide(index) {
+                // Hide all slides
+                carouselSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Remove active class from all dots
+                carouselDots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+                
+                // Show the selected slide
+                carouselSlides[index].classList.add('active');
+                
+                // Activate the corresponding dot
+                carouselDots[index].classList.add('active');
+                
+                currentSlide = index;
+            }
+            
+            // Function to show next slide
+            function nextSlide() {
+                let nextIndex = (currentSlide + 1) % carouselSlides.length;
+                showSlide(nextIndex);
+            }
+            
+            // Function to show previous slide
+            function prevSlide() {
+                let prevIndex = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
+                showSlide(prevIndex);
+            }
+            
+            // Set up auto-sliding
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+            
+            // Event listeners for dots
+            carouselDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    stopAutoSlide();
+                    showSlide(index);
+                    startAutoSlide();
+                });
+            });
+            
+            // Event listeners for arrows
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    stopAutoSlide();
+                    prevSlide();
+                    startAutoSlide();
+                });
+            }
+            
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    stopAutoSlide();
+                    nextSlide();
+                    startAutoSlide();
+                });
+            }
+            
+            // Initialize the carousel
+            showSlide(0);
+            startAutoSlide();
+            
+            // Pause auto-slide on hover
+            const carouselContainer = document.querySelector('.carousel-container');
+            if (carouselContainer) {
+                carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+                carouselContainer.addEventListener('mouseleave', startAutoSlide);
+            }
+            
+            // Add scroll animation to product cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-scale-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe product cards
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Add sparkle effects randomly
+            function createSparkle() {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 5 + 's';
+                document.querySelector('.hero-section').appendChild(sparkle);
+                
+                // Remove sparkle after animation completes
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 5000);
+            }
+            
+            // Create initial sparkles
+            for (let i = 0; i < 8; i++) {
+                setTimeout(createSparkle, i * 1000);
+            }
+            
+            // Continue creating sparkles
+            setInterval(createSparkle, 2000);
+        });
+
+        // Add intersection observer for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all product cards
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+     <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

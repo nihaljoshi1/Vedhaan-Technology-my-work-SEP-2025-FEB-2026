@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine Aroma - Premium Puja Collection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'fashion-primary': '#1a1a1a',
+                        'fashion-accent': '#d4af37',
+                        'fashion-light': '#f5f5f5',
+                        'fashion-dark': '#0a0a0a',
+                        'fashion-gray': '#4a4a4a',
+                        'fashion-light-gray': '#e0e0e0',
+                        'fashion-gold-light': '#f4e8c1',
+                        'fashion-gold-dark': '#b8941f'
+                    },
+                    fontFamily: {
+                        'sans': ['"Helvetica Neue"', 'Arial', 'sans-serif'],
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'elegant': ['"Cormorant Garamond"', 'serif']
+                    },
+                    boxShadow: {
+                        'fashion': '0 4px 20px rgba(0, 0, 0, 0.08)',
+                        'fashion-lg': '0 10px 30px rgba(0, 0, 0, 0.12)',
+                        'fashion-xl': '0 25px 50px rgba(0, 0, 0, 0.25)',
+                        'glow': '0 0 25px rgba(212, 175, 55, 0.4)',
+                        'glow-lg': '0 0 40px rgba(212, 175, 55, 0.6)',
+                        'inner-glow': 'inset 0 0 20px rgba(212, 175, 55, 0.2)',
+                        'gold-glow': '0 0 20px rgba(212, 175, 55, 0.3)',
+                        'luxury': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+                        'text-shimmer': 'textShimmer 4s ease-in-out infinite',
+                        'border-glow': 'borderGlow 3s ease-in-out infinite',
+                        'scale-in': 'scaleIn 0.6s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' }
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.8' }
+                        },
+                        textShimmer: {
+                            '0%': { 'background-position': '-200% center' },
+                            '100%': { 'background-position': '200% center' }
+                        },
+                        borderGlow: {
+                            '0%, 100%': { 'box-shadow': '0 0 10px rgba(212, 175, 55, 0.4)' },
+                            '50%': { 'box-shadow': '0 0 20px rgba(212, 175, 55, 0.8)' }
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        }
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #d4af37 0%, #f4e8c1 50%, #b8941f 100%)',
+                        'dark-gradient': 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)',
+                        'light-gradient': 'linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)',
+                        'dark-gradient': 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .hero-section {
+            height: 85vh;
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .carousel-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out, transform 1.5s ease-in-out;
+            transform: scale(1.05);
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 1;
+        }
+        
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .gradient-overlay {
+            background: linear-gradient(135deg, 
+                rgba(10, 10, 10, 0.85) 0%, 
+                rgba(26, 26, 26, 0.7) 50%, 
+                rgba(212, 175, 55, 0.2) 100%);
+        }
+        
+        
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e8c1 50%, #b8941f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-effect-dark {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .text-shadow-lg {
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-dot {
+            transition: all 0.4s ease;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+        
+        .carousel-dot.active {
+            background: #d4af37;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        }
+        
+        .floating-element {
+            animation: float 10s ease-in-out infinite;
+        }
+        
+        .floating-element-2 {
+            animation: float 12s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        
+        .floating-element-3 {
+            animation: float 14s ease-in-out infinite;
+            animation-delay: 4s;
+        }
+        
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.7s;
+            z-index: 1;
+        }
+        
+        .product-card:hover::before {
+            left: 100%;
+        }
+        
+        .product-image {
+            transition: transform 1s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e8c1 50%, #b8941f 100%);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s;
+        }
+        
+        .btn-gold:hover::before {
+            left: 100%;
+        }
+        
+        .btn-gold:hover {
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        .feature-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-badge::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(212, 175, 55, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+        
+        .feature-badge:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 0 auto;
+            width: 80%;
+        }
+        
+        .ornamental-border {
+            position: relative;
+        }
+        
+        .ornamental-border::before, .ornamental-border::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 Q15,30 30,50 Q15,70 0,50' fill='%23d4af37' opacity='0.3'/%3E%3C/svg%3E");
+            background-repeat: repeat-y;
+        }
+        
+        .ornamental-border::before {
+            left: 0;
+        }
+        
+        .ornamental-border::after {
+            right: 0;
+            transform: scaleX(-1);
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #f4e8c1;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px #f4e8c1;
+            animation: sparkle 4s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 70vh;
+                min-height: 500px;
+            }
+            
+            .mobile-hidden {
+                display: none;
+            }
+        }
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .luxury-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white;
+            border-radius: 20px;
+        }
+        
+        .luxury-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #b8941f, #d4af37);
+            z-index: 10;
+        }
+        
+        .luxury-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+            z-index: 1;
+        }
+        
+        .luxury-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #1a1a1a;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .gold-button {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #1a1a1a;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gold-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: all 0.6s;
+        }
+        
+        .gold-button:hover::before {
+            left: 100%;
+        }
+        
+        .gold-button:hover {
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .dark-button {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-button:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .price-tag {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .discount-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #b8941f, #d4af37);
+            border-radius: 3px;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 50%, #f5f5f5 100%);
+        }
+        .gold-gradient {
+            background: linear-gradient(45deg, #d4af37, #f7ef8a, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: white;
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+        .product-card:hover::before {
+            opacity: 1;
+        }
+        .product-image {
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background-size: cover;
+            background-position: center;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .premium-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        .premium-badge::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.5), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        .floating-element-delay {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        .icon-bg {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .testimonial-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+
+</head>
+<body class="bg-fashion-light">
+    <!-- Hero Section with Carousel -->
+    <!-- Hero Section with Carousel -->
+    <section class="hero-section relative overflow-hidden">
+        <!-- Sparkle Effects -->
+        <div class="sparkle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="sparkle" style="top: 60%; left: 85%; animation-delay: 1s;"></div>
+        <div class="sparkle" style="top: 80%; left: 15%; animation-delay: 2s;"></div>
+        <div class="sparkle" style="top: 40%; left: 90%; animation-delay: 3s;"></div>
+        
+        <!-- Floating decorative elements -->
+        <div class="absolute top-20 left-5 w-10 h-10 rounded-full bg-fashion-accent opacity-10 floating-element z-0"></div>
+        <div class="absolute bottom-40 right-10 w-6 h-6 rounded-full bg-fashion-light opacity-20 floating-element-2 z-0"></div>
+        <div class="absolute top-1/3 left-1/4 w-8 h-8 rounded-full bg-fashion-accent opacity-15 floating-element-3 z-0"></div>
+        
+        <!-- Carousel Container -->
+        <div class="carousel-container">
+            <!-- Slide 1 -->
+            <div class="carousel-slide active">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                    <source media="(min-width: 769px)" srcset="https://cdn.shopify.com/s/files/1/0754/5356/3101/files/4_835f7e3d-702f-4f3a-9327-d34319990fe0.png?v=1760336462">
+                    <img src="" 
+                         alt="Premium Puja Collection" 
+                         class="carousel-image">
+                </picture>
+                <div class="absolute inset-0 gradient-overlay"></div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="https://images.unsplash.com/photo-1600334089648-949c8c145d78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                    <source media="(min-width: 769px)" srcset="https://cdn.shopify.com/s/files/1/0754/5356/3101/files/5_6141b060-5fe4-48f9-81be-07a81aca2cc6.png?v=1760336462">
+                    <img src="img/hero-main.png" 
+                         alt="Sandalwood Incense" 
+                         class="carousel-image">
+                </picture>
+                <div class="absolute inset-0 gradient-overlay"></div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="https://images.unsplash.com/photo-1628669688053-3e4c8e57e8a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                    <source media="(min-width: 769px)" srcset="https://cdn.shopify.com/s/files/1/0754/5356/3101/files/banner5.png?v=1760337927">
+                    <img src="https://images.unsplash.com/photo-1628669688053-3e4c8e57e8a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Puja Accessories" 
+                         class="carousel-image">
+                </picture>
+                <div class="absolute inset-0 gradient-overlay"></div>
+            </div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="absolute inset-0 z-20 flex items-center">
+            <div class="container mx-auto px-6 md:px-10">
+                <div class="max-w-2xl animate-slide-up">
+                    <div class="inline-block mb-4">
+                        <span class="text-fashion-accent font-elegant font-medium text-lg px-4 py-2 rounded-full glass-effect-dark">Premium Puja Collection</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-serif font-bold text-fashion-light mb-6 leading-tight text-shadow-lg">
+                        Divine Aroma for<br>
+                        <span class="gold-gradient-text">Sacred Moments</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-fashion-light-gray mb-8 leading-relaxed animate-fade-in">
+                        Experience the purity and fragrance of our handcrafted dhup agarbatti and premium puja essentials. 
+                        Made with natural ingredients to elevate your spiritual practice.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                        <a href="#shop" class="btn-gold text-fashion-dark font-semibold py-3 px-8 rounded-lg flex items-center justify-center text-lg">
+                            <span>Shop Collection</span>
+                            <i class="fas fa-arrow-right ml-3"></i>
+                        </a>
+                        <a href="https://granthagarrbatti.co/pages/aboutgranth" class="border-2 border-fashion-light text-fashion-light hover:bg-fashion-light hover:text-fashion-dark font-medium py-3 px-8 rounded-lg transition duration-300 glass-effect hover-lift text-lg">
+                            Discover Our Story
+                        </a>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+        
+        <!-- Carousel Controls -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex space-x-4">
+            <button class="carousel-dot" data-slide="0"></button>
+            <button class="carousel-dot" data-slide="1"></button>
+            <button class="carousel-dot" data-slide="2"></button>
+        </div>
+        
+        <!-- Carousel Arrows -->
+        <button class="absolute left-6 top-1/2 transform -translate-y-1/2 z-30 text-fashion-light hover:text-fashion-accent transition duration-300 carousel-prev hidden md:flex items-center justify-center p-4 rounded-full glass-effect feature-badge">
+            <i class="fas fa-chevron-left text-xl"></i>
+        </button>
+        <button class="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 text-fashion-light hover:text-fashion-accent transition duration-300 carousel-next hidden md:flex items-center justify-center p-4 rounded-full glass-effect feature-badge">
+            <i class="fas fa-chevron-right text-xl"></i>
+        </button>
+        
+    </section>
+
+    <!-- shop by cateogry -->
+
+    <section class="py-16 md:py-24 px-4 bg-gradient-to-br from-fashion-light via-white to-fashion-light/50 relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-10 left-5 w-20 h-20 bg-fashion-accent/5 rounded-full blur-xl"></div>
+        <div class="absolute bottom-10 right-5 w-32 h-32 bg-fashion-accent/5 rounded-full blur-xl"></div>
+        <div class="absolute top-1/3 right-10 w-16 h-16 bg-fashion-accent/3 rounded-full blur-lg"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Section Header with enhanced styling -->
+            <div class="text-center mb-14 md:mb-20">
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-fashion-primary mb-5 md:mb-6 relative inline-block">
+                    Shop by Category
+                    <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-fashion-accent rounded-full"></span>
+                </h2>
+                <p class="text-fashion-gray max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">Discover our premium collection of puja essentials, crafted with devotion and tradition for your spiritual journey</p>
+            </div>
+
+            <!-- Enhanced Filter Buttons with icons -->
+            <div class="mb-12 md:mb-16">
+                <div class="flex overflow-x-auto pb-4 md:pb-0 md:flex-wrap md:justify-center gap-3 md:gap-4 scrollbar-hide">
+                    <button class="filter-btn active flex-shrink-0 px-6 py-3.5 rounded-2xl border-2 border-fashion-accent bg-fashion-accent text-white font-medium shadow-lg shadow-fashion-accent/20 hover:shadow-xl hover:shadow-fashion-accent/30 transition-all duration-300 flex items-center" data-filter="all">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                        </svg>
+                        All Products
+                    </button>
+                    <button class="filter-btn flex-shrink-0 px-6 py-3.5 rounded-2xl border-2 border-fashion-light-gray bg-white text-fashion-primary font-medium hover:border-fashion-accent/50 hover:shadow-lg transition-all duration-300 flex items-center" data-filter="dhup">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path>
+                        </svg>
+                        Dhup
+                    </button>
+                    <button class="filter-btn flex-shrink-0 px-6 py-3.5 rounded-2xl border-2 border-fashion-light-gray bg-white text-fashion-primary font-medium hover:border-fashion-accent/50 hover:shadow-lg transition-all duration-300 flex items-center" data-filter="agarbatti">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                        Agarbatti
+                    </button>
+                    <button class="filter-btn flex-shrink-0 px-6 py-3.5 rounded-2xl border-2 border-fashion-light-gray bg-white text-fashion-primary font-medium hover:border-fashion-accent/50 hover:shadow-lg transition-all duration-300 flex items-center" data-filter="kapoor-spray">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"></path>
+                        </svg>
+                        Kapoor Spray
+                    </button>
+                    <button class="filter-btn flex-shrink-0 px-6 py-3.5 rounded-2xl border-2 border-fashion-light-gray bg-white text-fashion-primary font-medium hover:border-fashion-accent/50 hover:shadow-lg transition-all duration-300 flex items-center" data-filter="gifts">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"></path>
+                        </svg>
+                        Gifts
+                    </button>
+                </div>
+            </div>
+
+            <!-- Enhanced Category Grid with modern cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" id="category-grid">
+                <!-- Category 1: Dhup -->
+                <div class="category-card group bg-white rounded-3xl overflow-hidden shadow-fashion hover:shadow-fashion-lg transition-all duration-500 hover:-translate-y-2" data-category="dhup">
+                    <div class="relative overflow-hidden">
+                        <div class="h-64 md:h-72 relative">
+                            <img src="https://cdn.shopify.com/s/files/1/0754/5356/3101/files/4_9272c62a-7625-4932-8508-414fc420ab99.png?v=1756703596" loading="lazy" 
+                                alt="Premium Dhup Incense Sticks" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-70"></div>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-fashion-accent text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">Bestseller</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-white/90 text-fashion-primary font-bold px-3 py-1 rounded-lg shadow-md">From ₹199</span>
+                        </div>
+                        <div class="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white/90 text-fashion-primary p-2 rounded-full shadow-md hover:bg-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-serif font-bold text-fashion-primary">Hawan Tikki - Pure Cowdung Havan Samagri</h3>
+                            <div class="flex text-amber-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <span class="text-fashion-gray text-sm ml-1">4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray text-sm mb-5 leading-relaxed">Lorem ipsum elit. Nobis perspiciatis tenetur quibusdam impedit recusandae necessitatibus aliquid nam voluptatibus temporibus quia.</p>
+                        <a href="https://granthagarrbatti.co/products/hawan-tikki" class="w-full bg-gradient-to-r from-fashion-primary to-fashion-dark text-white text-center font-medium py-3.5 rounded-xl hover:from-fashion-accent hover:to-fashion-accent/90 transition-all duration-300 flex items-center justify-center group-hover:shadow-md">
+                            Shop Now
+                            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Category 2: Agarbatti -->
+                <div class="category-card group bg-white rounded-3xl overflow-hidden shadow-fashion hover:shadow-fashion-lg transition-all duration-500 hover:-translate-y-2" data-category="agarbatti">
+                    <div class="relative overflow-hidden">
+                        <div class="h-64 md:h-72 relative">
+                            <img src="https://cdn.shopify.com/s/files/1/0754/5356/3101/files/Untitled_design_5_cd27aceb-9b88-49c4-8cbf-3aa26fd7ac4f.png?v=1756641649" 
+                                alt="Fragrant Agarbatti Incense" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-70"></div>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-fashion-accent text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">Popular</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-white/90 text-fashion-primary font-bold px-3 py-1 rounded-lg shadow-md">From ₹199</span>
+                        </div>
+                        <div class="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white/90 text-fashion-primary p-2 rounded-full shadow-md hover:bg-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-serif font-bold text-fashion-primary">Ram -Fragrance from 7 chakra <br> Agarbatti</h3>
+                            <div class="flex text-amber-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <span class="text-fashion-gray text-sm ml-1">4.7</span>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray text-sm mb-5 leading-relaxed">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque odio sapiente consequatur cum error magni voluptate quidem dolorem ipsam suscipit.</p>
+                        <a href="https://granthagarrbatti.co/products/ram-agarbatti" class="w-full bg-gradient-to-r from-fashion-primary to-fashion-dark text-white text-center font-medium py-3.5 rounded-xl hover:from-fashion-accent hover:to-fashion-accent/90 transition-all duration-300 flex items-center justify-center group-hover:shadow-md">
+                            Shop Now
+                            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Category 3: kapoor-spray -->
+                <div class="category-card group bg-white rounded-3xl overflow-hidden shadow-fashion hover:shadow-fashion-lg transition-all duration-500 hover:-translate-y-2" data-category="kapoor-spray">
+                    <div class="relative overflow-hidden">
+                        <div class="h-64 md:h-72 relative">
+                            <img src="https://cdn.shopify.com/s/files/1/0754/5356/3101/files/3_15269973-6152-4828-a0d3-d220bf65e627.png?v=1756703595" 
+                                alt="Brass Puja Thali Set" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-70"></div>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-fashion-accent text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">New</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-white/90 text-fashion-primary font-bold px-3 py-1 rounded-lg shadow-md">From ₹199</span>
+                        </div>
+                        <div class="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white/90 text-fashion-primary p-2 rounded-full shadow-md hover:bg-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-serif font-bold text-fashion-primary">Divine Kapoor Gulab Spray</h3>
+                            <div class="flex text-amber-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <span class="text-fashion-gray text-sm ml-1">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray text-sm mb-5 leading-relaxed">Lorem ipsum dolor sit amet.lorem2 Lorem, ipsum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit, odit. Minima et velit non quidem est magnam mollitia quasi quaerat?</p>
+                        <a href="https://granthagarrbatti.co/products/scentvent-kapoor-gulab-sprey" class="w-full bg-gradient-to-r from-fashion-primary to-fashion-dark text-white text-center font-medium py-3.5 rounded-xl hover:from-fashion-accent hover:to-fashion-accent/90 transition-all duration-300 flex items-center justify-center group-hover:shadow-md">
+                            Shop Now
+                            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Category 4: Gift Boxes -->
+                <div class="category-card group bg-white rounded-3xl overflow-hidden shadow-fashion hover:shadow-fashion-lg transition-all duration-500 hover:-translate-y-2" data-category="gifts">
+                    <div class="relative overflow-hidden">
+                        <div class="h-64 md:h-72 relative">
+                            <img src="https://granthagarrbatti.co/cdn/shop/files/g2.png?v=1760358740&width=600" 
+                                alt="Brass Diya and Lamps" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-70"></div>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-fashion-accent text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">Featured</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-white/90 text-fashion-primary font-bold px-3 py-1 rounded-lg shadow-md">From ₹559</span>
+                        </div>
+                        <div class="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white/90 text-fashion-primary p-2 rounded-full shadow-md hover:bg-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-serif font-bold text-fashion-primary">
+                                Festive Sampler Gift Set
+                            </h3>
+                            <div class="flex text-amber-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <span class="text-fashion-gray text-sm ml-1">4.6</span>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray text-sm mb-5 leading-relaxed">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis repellendus dolorem voluptatem, dolor nam praesentium laudantium amet architecto et eaque.</p>
+                        <a href="https://granthagarrbatti.co/products/festive-sampler-gift-set-gau-gulab-jass-incense-kapoor-attar" class="w-full bg-gradient-to-r from-fashion-primary to-fashion-dark text-white text-center font-medium py-3.5 rounded-xl hover:from-fashion-accent hover:to-fashion-accent/90 transition-all duration-300 flex items-center justify-center group-hover:shadow-md">
+                            Shop Now
+                            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <!-- Category 1: Dhup -->
+                <div class="category-card group bg-white rounded-3xl overflow-hidden shadow-fashion hover:shadow-fashion-lg transition-all duration-500 hover:-translate-y-2" data-category="dhup">
+                    <div class="relative overflow-hidden">
+                        <div class="h-64 md:h-72 relative">
+                            <img src="https://granthagarrbatti.co/cdn/shop/files/gau-gulab_200x200.jpg?v=1753531280" loading="lazy" 
+                                alt="Premium Dhup Incense Sticks" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-70"></div>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-fashion-accent text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">Bestseller</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-white/90 text-fashion-primary font-bold px-3 py-1 rounded-lg shadow-md">From ₹199</span>
+                        </div>
+                        <div class="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white/90 text-fashion-primary p-2 rounded-full shadow-md hover:bg-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-serif font-bold text-fashion-primary">Gau Gulab - Bamboo less incense Sticks</h3>
+                            <div class="flex text-amber-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <span class="text-fashion-gray text-sm ml-1">4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray text-sm mb-5 leading-relaxed">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quam incidunt odio nisi ut inventore earum, nostrum corrupti minus perferendis!</p>
+                        <a href="https://granthagarrbatti.co/products/gau-gulab" class="w-full bg-gradient-to-r from-fashion-primary to-fashion-dark text-white text-center font-medium py-3.5 rounded-xl hover:from-fashion-accent hover:to-fashion-accent/90 transition-all duration-300 flex items-center justify-center group-hover:shadow-md">
+                            Shop Now
+                            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Category 2: Agarbatti -->
+                <div class="category-card group bg-white rounded-3xl overflow-hidden shadow-fashion hover:shadow-fashion-lg transition-all duration-500 hover:-translate-y-2" data-category="agarbatti">
+                    <div class="relative overflow-hidden">
+                        <div class="h-64 md:h-72 relative">
+                            <img src="https://granthagarrbatti.co/cdn/shop/files/lakshman-stick_1024x1024.png?v=1755589185" 
+                                alt="Fragrant Agarbatti Incense" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-70"></div>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-fashion-accent text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">Popular</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-white/90 text-fashion-primary font-bold px-3 py-1 rounded-lg shadow-md">From ₹199</span>
+                        </div>
+                        <div class="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white/90 text-fashion-primary p-2 rounded-full shadow-md hover:bg-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-serif font-bold text-fashion-primary">Laxman - Fragrance from 7 chakra</h3>
+                            <div class="flex text-amber-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <span class="text-fashion-gray text-sm ml-1">4.7</span>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray text-sm mb-5 leading-relaxed">Lorem ipsum dolor sit amet Lorem, ipsum dolor. consectetur adipisicing elit. Cumque odio sapiente consequatur cum error magni voluptate quidem dolorem ipsam suscipit.</p>
+                        <a href="https://granthagarrbatti.co/products/laxman-agarbatti" class="w-full bg-gradient-to-r from-fashion-primary to-fashion-dark text-white text-center font-medium py-3.5 rounded-xl hover:from-fashion-accent hover:to-fashion-accent/90 transition-all duration-300 flex items-center justify-center group-hover:shadow-md">
+                            Shop Now
+                            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Category 3: kapoor-spray -->
+                <div class="category-card group bg-white rounded-3xl overflow-hidden shadow-fashion hover:shadow-fashion-lg transition-all duration-500 hover:-translate-y-2" data-category="kapoor-spray">
+                    <div class="relative overflow-hidden">
+                        <div class="h-64 md:h-72 relative">
+                            <img src="https://granthagarrbatti.co/cdn/shop/files/ScentVentKapoorChandanSprey1_200x200.webp?v=1749811066" 
+                                alt="Brass Puja Thali Set" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-70"></div>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-fashion-accent text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">New</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-white/90 text-fashion-primary font-bold px-3 py-1 rounded-lg shadow-md">From ₹199</span>
+                        </div>
+                        <div class="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white/90 text-fashion-primary p-2 rounded-full shadow-md hover:bg-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-serif font-bold text-fashion-primary">Divine Kapoor Chandan Spray</h3>
+                            <div class="flex text-amber-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <span class="text-fashion-gray text-sm ml-1">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray text-sm mb-5 leading-relaxed">Lorem ipsum dolor sit amet.lorem2 Lorem, ipsum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit, odit. Minima et velit non quidem est magnam mollitia quasi quaerat?</p>
+                        <a href="https://granthagarrbatti.co/products/scentvent-catchy-camphor-sprey" class="w-full bg-gradient-to-r from-fashion-primary to-fashion-dark text-white text-center font-medium py-3.5 rounded-xl hover:from-fashion-accent hover:to-fashion-accent/90 transition-all duration-300 flex items-center justify-center group-hover:shadow-md">
+                            Shop Now
+                            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Category 4: Kappor Spray -->
+                <div class="category-card group bg-white rounded-3xl overflow-hidden shadow-fashion hover:shadow-fashion-lg transition-all duration-500 hover:-translate-y-2" data-category="gifts">
+                    <div class="relative overflow-hidden">
+                        <div class="h-64 md:h-72 relative">
+                            <img src="https://granthagarrbatti.co/cdn/shop/files/g1_14e49d61-397a-4618-93ca-34465d87e8a4.png?v=1760358825&width=600" 
+                                alt="Brass Diya and Lamps" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-70"></div>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-fashion-accent text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">Featured</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-white/90 text-fashion-primary font-bold px-3 py-1 rounded-lg shadow-md">From ₹507</span>
+                        </div>
+                        <div class="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white/90 text-fashion-primary p-2 rounded-full shadow-md hover:bg-white transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-serif font-bold text-fashion-primary">
+                                Diwali Gift Box: Festive Purity
+                            </h3>
+                            <div class="flex text-amber-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <span class="text-fashion-gray text-sm ml-1">4.6</span>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray text-sm mb-5 leading-relaxed">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis repellendus dolorem voluptatem, dolor nam praesentium laudantium amet architecto et eaque.</p>
+                        <a href="https://granthagarrbatti.co/products/diwali-gift-box-festive-purity" class="w-full bg-gradient-to-r from-fashion-primary to-fashion-dark text-white text-center font-medium py-3.5 rounded-xl hover:from-fashion-accent hover:to-fashion-accent/90 transition-all duration-300 flex items-center justify-center group-hover:shadow-md">
+                            Shop Now
+                            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced View All Button -->
+            <div class="text-center mt-16 md:mt-20">
+                <a href="https://granthagarrbatti.co/collections/kapoor-spray" class="inline-flex items-center border-2 border-fashion-primary text-fashion-primary font-medium px-10 py-4 rounded-2xl hover:bg-fashion-primary hover:text-white transition-all duration-300 group shadow-fashion hover:shadow-fashion-lg bg-white/80 backdrop-blur-sm">
+                    Explore All Categories
+                    <svg class="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <style>
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .category-card {
+                opacity: 1;
+                transform: translateY(0);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            
+            .category-card.hidden {
+                opacity: 0;
+                transform: translateY(20px);
+                pointer-events: none;
+            }
+        </style>
+
+        <script>
+            // Enhanced Filter functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                const categoryCards = document.querySelectorAll('.category-card');
+                
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        filterButtons.forEach(btn => {
+                            btn.classList.remove('active');
+                            btn.classList.remove('border-fashion-accent');
+                            btn.classList.remove('bg-fashion-accent');
+                            btn.classList.remove('text-white');
+                            btn.classList.remove('shadow-lg');
+                            btn.classList.add('border-fashion-light-gray');
+                            btn.classList.add('bg-white');
+                            btn.classList.add('text-fashion-primary');
+                        });
+                        
+                        // Add active class to clicked button
+                        this.classList.add('active');
+                        this.classList.add('border-fashion-accent');
+                        this.classList.add('bg-fashion-accent');
+                        this.classList.add('text-white');
+                        this.classList.add('shadow-lg');
+                        this.classList.remove('border-fashion-light-gray');
+                        this.classList.remove('bg-white');
+                        this.classList.remove('text-fashion-primary');
+                        
+                        const filterValue = this.getAttribute('data-filter');
+                        
+                        // Animate cards based on filter
+                        categoryCards.forEach(card => {
+                            if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                                card.classList.remove('hidden');
+                                setTimeout(() => {
+                                    card.style.opacity = '1';
+                                    card.style.transform = 'translateY(0)';
+                                }, 50);
+                            } else {
+                                card.style.opacity = '0';
+                                card.style.transform = 'translateY(20px)';
+                                setTimeout(() => {
+                                    card.classList.add('hidden');
+                                }, 500);
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+    </section>
+
+    <!-- banner image -->
+    <section class="image-banner-section">
+    <div class="banner-image">
+        <!-- Replace the image source with your own image -->
+        <img src="img/banner/banner4.png" class="h-full" alt="Beautiful landscape">
+    </div>
+    <div class="banner-overlay">
+        <div class="banner-content">
+            <h2 class="banner-title">Discover Beauty</h2>
+            <p class="banner-subtitle">Explore the world's most stunning locations</p>
+            <button class="banner-button">Learn More</button>
+        </div>
+    </div>
+    </section>
+
+    <style>
+    .image-banner-section {
+        position: relative;
+        height: 300px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+    }
+
+    .banner-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .banner-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .image-banner-section {
+            height: 250px;
+            margin: 15px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .image-banner-section {
+            height: 200px;
+        }
+    }
+    </style>
+
+    <!-- best seller section -->
+
+    <section class="py-16 px-4 bg-gradient-to-br from-white to-fashion-light/30">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="inline-block text-fashion-accent font-medium tracking-widest text-sm mb-4">BEST SELLERS</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-fashion-dark mb-6">
+                    Divine <span class="text-fashion-accent">Essentials</span>
+                </h2>
+                <p class="text-fashion-gray max-w-2xl mx-auto text-lg">
+                    Curated collection of premium puja essentials for your spiritual journey
+                </p>
+            </div>
+
+            <!-- Modern Products Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
+                <!-- Featured Product - Large Card -->
+                <div class="md:col-span-6 group">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 h-full flex flex-col md:flex-row border border-fashion-light-gray/50">
+                        <div class="relative h-full md:w-2/5 overflow-hidden bg-gradient-to-br from-fashion-light to-fashion-light-gray/50">
+                            <div class="p-8 h-full md:h-full flex items-center justify-center">
+                                <img src="https://granthagarrbatti.co/cdn/shop/files/1000256600_32cd0f7e684a163bf2ddf8c35fd0f121-10_7_2025_4_16_10_pm_cde6c13f-e699-4db2-8ebe-bc4502506d20_200x200.png?v=1756706498" 
+                                    alt="Complete Puja Kit" 
+                                    class="max-h-full md:max-h-56 object-contain group-hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-fashion-accent text-fashion-primary px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                                    ⭐ Featured
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6 md:w-3/5 flex flex-col justify-center">
+                            <div class="mb-4">
+                                <span class="text-fashion-accent font-semibold text-xs tracking-wide uppercase">Premium Spray</span>
+                                <h3 class="font-serif text-2xl font-bold text-fashion-dark my-3">Kesar Chandan Kapoor Spray</h3>
+                                <p class="text-fashion-gray text-sm leading-relaxed">Everything you need for daily worship in one elegant package</p>
+                            </div>
+                            <div class="flex items-center justify-between mt-4">
+                                <div>
+                                    <span class="text-2xl font-bold text-fashion-accent">₹199</span>
+                                    <span class="text-fashion-gray line-through text-sm ml-2">₹349</span>
+                                </div>
+                                <a href="https://granthagarrbatti.co/products/scentvent-kesar-chandan-kapoor-sprey" class="bg-fashion-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-fashion-accent transition-all duration-300 transform hover:-translate-y-1">
+                                    View Product
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medium Products Column -->
+                <div class="md:col-span-6 grid grid-cols-2 gap-6">
+                    <!-- Product 1 - Spray Bottle -->
+                    <div class="col-span-2 md:col-span-1 group">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 h-full border border-fashion-light-gray/50">
+                            <div class="p-6 h-48 bg-gradient-to-br from-fashion-light to-fashion-light-gray/30 flex items-center justify-center">
+                                <img src="https://granthagarrbatti.co/cdn/shop/files/4_1024x1024.png?v=1746271161" 
+                                    alt="Sacred Spray Bottle" 
+                                    class="max-h-32 object-contain group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-serif text-lg font-semibold text-fashion-dark mb-2 truncate">Gau Loban - Bamboo less incense Sticks</h3>
+                                <p class="text-fashion-gray text-xs mb-3 line-clamp-2">Lorem ipsum dolor sit amet consectetur.</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-lg font-bold text-fashion-accent">₹199</span>
+                                    <a href="https://granthagarrbatti.co/products/gau-loban" class="bg-fashion-primary/10 text-fashion-primary p-2 rounded-lg hover:bg-fashion-primary hover:text-white transition-colors duration-300">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 - Agarbatti -->
+                    <div class="col-span-2 md:col-span-1 group">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 h-full border border-fashion-light-gray/50">
+                            <div class="p-6 h-48 bg-gradient-to-br from-fashion-light to-fashion-light-gray/30 flex items-center justify-center">
+                                <img src="https://granthagarrbatti.co/cdn/shop/files/g2.png?v=1760358740&width=600" 
+                                    alt="Premium Agarbatti" 
+                                    class="max-h-32 object-contain group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-serif text-lg font-semibold text-fashion-dark mb-2 truncate">Festive Sampler Gift Set: Gau Gulab, Jass Incense & Kapoor Attar</h3>
+                                <p class="text-fashion-gray text-xs mb-3 line-clamp-2">Lorem ipsum dolor sit amet consectetur.</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-lg font-bold text-fashion-accent">₹559</span>
+                                    <a href="https://granthagarrbatti.co/products/festive-sampler-gift-set-gau-gulab-jass-incense-kapoor-attar" class="bg-fashion-primary/10 text-fashion-primary p-2 rounded-lg hover:bg-fashion-primary hover:text-white transition-colors duration-300">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 - Dhup Box -->
+                    <div class="col-span-2 group">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 h-full border border-fashion-light-gray/50">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-2/5 p-6 bg-gradient-to-br from-fashion-light to-fashion-light-gray/30 flex items-center justify-center">
+                                    <img src="https://granthagarrbatti.co/cdn/shop/files/ScentVentOscarNaturalFreshner1_200x200.webp?v=1749810258" 
+                                        alt="Traditional Dhup Box" 
+                                        class="max-h-32 object-contain group-hover:scale-110 transition-transform duration-500">
+                                </div>
+                                <div class="md:w-3/5 p-4 flex flex-col justify-center">
+                                    <div class="mb-2">
+                                        <span class="text-fashion-accent font-semibold text-xs tracking-wide uppercase">Premium</span>
+                                        <h3 class="font-serif text-lg font-semibold text-fashion-dark mb-1">Oscar Natural Room Spray</h3>
+                                        <p class="text-fashion-gray text-xs">Lorem ipsum dolor sit amet.</p>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xl font-bold text-fashion-accent">₹199</span>
+                                        <a href="https://granthagarrbatti.co/products/oscar-natural-freshener" class="bg-fashion-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-fashion-accent transition-colors duration-300">
+                                            View Product
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Products Row -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <!-- Product 4 - Incense Sticks -->
+                <div class="group">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 h-full border border-fashion-light-gray/50">
+                        <div class="p-6 h-40 bg-gradient-to-br from-fashion-light to-fashion-light-gray/30 flex items-center justify-center">
+                            <img src="https://granthagarrbatti.co/cdn/shop/files/Untitled_720_x_1080_px_200x200.png?v=1749811066" 
+                                alt="Floral Incense Sticks" 
+                                class="max-h-28 object-contain group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-serif font-semibold text-fashion-dark mb-1 truncate">Kapoor Chandan Spray</h3>
+                            <p class="text-fashion-gray text-xs mb-2">Chandan fragrance</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-fashion-accent">₹199</span>
+                                <a href="https://granthagarrbatti.co/products/scentvent-kapoor-chandan-sprey" class="bg-fashion-primary/10 text-fashion-primary p-2 rounded-lg hover:bg-fashion-primary hover:text-white transition-colors duration-300">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 - Essential Oils -->
+                <div class="group">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 h-full border border-fashion-light-gray/50">
+                        <div class="p-6 h-40 bg-gradient-to-br from-fashion-light to-fashion-light-gray/30 flex items-center justify-center">
+                            <img src="https://granthagarrbatti.co/cdn/shop/files/chandankapoorspray_1024x1024.png?v=1756706498" 
+                                alt="Essential Oil Set" 
+                                class="max-h-28 object-contain group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-serif font-semibold text-fashion-dark mb-1 truncate">Kesar Chandan Kapoor Spray</h3>
+                            <p class="text-fashion-gray text-xs mb-2">Kesar & Chandan Fragrance</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-fashion-accent">₹749</span>
+                                <a href="https://granthagarrbatti.co/products/scentvent-kesar-chandan-kapoor-sprey" class="bg-fashion-primary/10 text-fashion-primary p-2 rounded-lg hover:bg-fashion-primary hover:text-white transition-colors duration-300">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 - Camphor -->
+                <div class="group">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 h-full border border-fashion-light-gray/50">
+                        <div class="p-6 h-40 bg-gradient-to-br from-fashion-light to-fashion-light-gray/30 flex items-center justify-center">
+                            <img src="https://granthagarrbatti.co/cdn/shop/files/kesarchandanspray_1024x1024.png?v=1756706515" 
+                                alt="Camphor Tablets" 
+                                class="max-h-28 object-contain group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-serif font-semibold text-fashion-dark mb-1 truncate">Kapoor Gulab Spray</h3>
+                            <p class="text-fashion-gray text-xs mb-2">Gulab Spray</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-fashion-accent">₹199</span>
+                                <a href="https://granthagarrbatti.co/products/scentvent-kapoor-gulab-sprey" class="bg-fashion-primary/10 text-fashion-primary p-2 rounded-lg hover:bg-fashion-primary hover:text-white transition-colors duration-300">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 - Gift Set -->
+                <div class="group">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 h-full border border-fashion-light-gray/50">
+                        <div class="p-6 h-40 bg-gradient-to-br from-fashion-light to-fashion-light-gray/30 flex items-center justify-center">
+                            <img src="https://granthagarrbatti.co/cdn/shop/files/catchykapoor_1024x1024.png?v=1749810347" 
+                                alt="Puja Gift Set" 
+                                class="max-h-28 object-contain group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-serif font-semibold text-fashion-dark mb-1 truncate">Catchy Camphor Spray</h3>
+                            <p class="text-fashion-gray text-xs mb-2">Perfect spiritual spray</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-fashion-accent">₹199</span>
+                                <a href="https://granthagarrbatti.co/products/scentvent-catchy-camphor-sprey" class="bg-fashion-primary/10 text-fashion-primary p-2 rounded-lg hover:bg-fashion-primary hover:text-white transition-colors duration-300">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="text-center">
+                <a href="https://granthagarrbatti.co/collections/kapoor-spray" class="bg-fashion-primary text-white px-8 py-4 rounded-2xl font-medium hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                    Explore All Products
+                    <svg class="w-5 h-5 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- banner image 2 -->
+    <section class="image-banner-section">
+        <div class="banner-image">
+            <!-- Replace the image source with your own image -->
+            <img src="img/banner/new-arrivals.png" alt="Beautiful landscape">
+        </div>
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <h2 class="banner-title">Discover Beauty</h2>
+                <p class="banner-subtitle">Explore the world's most stunning locations</p>
+                <button class="banner-button">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- new arrivals -->
+
+    <section class="relative py-24 bg-gradient-to-br from-white via-fashion-light/30 to-white overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -left-40 w-80 h-80 bg-fashion-accent/5 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-fashion-accent/3 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 left-1/4 w-64 h-64 bg-fashion-accent/2 rounded-full blur-2xl animate-float"></div>
+        </div>
+        
+        <!-- Geometric pattern overlay -->
+        <div class="absolute inset-0 opacity-[0.03]">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 40px 40px;"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Section Header with modern typography -->
+            <div class="text-center mb-20">
+                <div class="inline-flex items-center gap-3 text-fashion-accent font-medium tracking-widest text-xs uppercase mb-4">
+                    <span class="w-8 h-px bg-fashion-accent"></span>
+                    NEW COLLECTION
+                    <span class="w-8 h-px bg-fashion-accent"></span>
+                </div>
+                <h2 class="text-5xl md:text-7xl font-serif font-light text-fashion-dark mb-6 leading-tight">
+                    Divine <span class="italic font-normal">Arrivals</span>
+                </h2>
+                <p class="text-fashion-gray max-w-2xl mx-auto text-lg font-light leading-relaxed">
+                    Experience spiritual elegance with our latest curated collection of premium dhup agarbatti and puja essentials
+                </p>
+            </div>
+
+            <!-- Modern Product Showcase -->
+            <div class="relative">
+                <!-- Main featured product -->
+                <div class="grid lg:grid-cols-2 gap-12 mb-16 items-center">
+                    <div class="relative group">
+                        <div class="relative rounded-3xl overflow-hidden">
+                            <div class="aspect-square bg-gradient-to-br from-fashion-light-gray to-fashion-light">
+                                <img src="img/product/gau gulab - bamboo less incense sticks.webp" 
+                                    alt="Premium Sandalwood Agarbatti" 
+                                    class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-fashion-dark/40 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6">
+                                <span class="bg-fashion-accent/90 text-white px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm">Featured</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-fashion-accent font-serif text-lg">New This Week</span>
+                            <h3 class="font-serif text-4xl font-light text-fashion-dark mt-2 mb-4">Royal Sandalwood Essence</h3>
+                            <p class="text-fashion-gray text-lg leading-relaxed">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam unde quasi voluptates modi quia. Accusamus ad aliquid tempore sit natus. Voluptate ratione enim dolorum fuga repudiandae. Placeat esse perspiciatis vero cumque animi exercitationem consequuntur, blanditiis at repudiandae eveniet asperiores non illum voluptatum explicabo quidem totam tempore soluta eius temporibus eligendi!
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-center gap-6">
+                            <div class="text-3xl font-serif text-fashion-accent font-light">₹399</div>
+                            <div class="flex items-center gap-1 text-fashion-accent">
+                                <div class="flex">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                </div>
+                                <span class="text-fashion-gray text-sm">4.9 (128 reviews)</span>
+                            </div>
+                        </div>
+                        
+                        <button class="group relative bg-fashion-primary text-white px-8 py-4 rounded-full font-medium overflow-hidden transition-all duration-300 hover:bg-fashion-dark w-full max-w-xs">
+                            <span class="relative z-10 flex items-center justify-center">
+                                View Product
+                                <svg class="w-5 h-5 ml-3 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product grid with modern layout -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Product 1 -->
+                    <div class="group relative">
+                        <div class="relative rounded-2xl overflow-hidden bg-white/80 backdrop-blur-sm border border-fashion-light-gray/30 hover:border-fashion-accent/20 transition-all duration-500">
+                            <div class="aspect-[3/4] overflow-hidden">
+                                <img src="img/product/product1.webp" 
+                                    alt="Floral Agarbatti" 
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-fashion-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-white/90 text-fashion-dark px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">New</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h4 class="font-serif text-xl font-medium text-fashion-dark">Divine Flora Blend</h4>
+                            <p class="text-fashion-gray text-sm">Exotic floral fragrance</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-fashion-accent font-serif text-lg">₹299</span>
+                                <button class="w-8 h-8 rounded-full bg-fashion-primary text-white flex items-center justify-center hover:bg-fashion-dark transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="group relative">
+                        <div class="relative rounded-2xl overflow-hidden bg-white/80 backdrop-blur-sm border border-fashion-light-gray/30 hover:border-fashion-accent/20 transition-all duration-500">
+                            <div class="aspect-[3/4] overflow-hidden">
+                                <img src="img/product/product2.webp" 
+                                    alt="Puja Kit" 
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-fashion-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-white/90 text-fashion-dark px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">New</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h4 class="font-serif text-xl font-medium text-fashion-dark">Sacred Rituals Set</h4>
+                            <p class="text-fashion-gray text-sm">Complete puja collection</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-fashion-accent font-serif text-lg">₹899</span>
+                                <button class="w-8 h-8 rounded-full bg-fashion-primary text-white flex items-center justify-center hover:bg-fashion-dark transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="group relative">
+                        <div class="relative rounded-2xl overflow-hidden bg-white/80 backdrop-blur-sm border border-fashion-light-gray/30 hover:border-fashion-accent/20 transition-all duration-500">
+                            <div class="aspect-[3/4] overflow-hidden">
+                                <img src="img/product/product3.webp" 
+                                    alt="Meditation Incense" 
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-fashion-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="bg-white/90 text-fashion-dark px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">New</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h4 class="font-serif text-xl font-medium text-fashion-dark">Zen Meditation</h4>
+                            <p class="text-fashion-gray text-sm">Calming blend for yoga</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-fashion-accent font-serif text-lg">₹279</span>
+                                <button class="w-8 h-8 rounded-full bg-fashion-primary text-white flex items-center justify-center hover:bg-fashion-dark transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modern CTA -->
+            <div class="text-center mt-16">
+                <button class="group relative bg-fashion-dark border-2 border-fashion-accent text-fashion-accent px-12 py-4 rounded-full font-medium overflow-hidden transition-all duration-300 hover:text-white">
+                    <span class="relative z-10 flex items-center justify-center">
+                        View Complete Collection
+                        <svg class="w-5 h-5 ml-3 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </span>
+                    <span class="absolute inset-0 bg-fashion-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                </button>
+            </div>
+        </div>
+
+        <style>
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                50% { transform: translateY(-20px) rotate(1deg); }
+            }
+            @keyframes pulse-slow {
+                0%, 100% { opacity: 0.5; }
+                50% { opacity: 0.8; }
+            }
+            .animate-float {
+                animation: float 8s ease-in-out infinite;
+            }
+            .animate-pulse-slow {
+                animation: pulse-slow 4s ease-in-out infinite;
+            }
+        </style>
+    </section>
+
+    <!-- banner image 3 -->
+   
+    <section class="image-banner-section">
+        <div class="banner-image">
+            <!-- Replace the image source with your own image -->
+            <img src="img/banner/gift-banner.png" alt="Beautiful landscape">
+        </div>
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <h2 class="banner-title">Discover Beauty</h2>
+                <p class="banner-subtitle">Explore the world's most stunning locations</p>
+                <button class="banner-button">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- gift products -->
+    <section class="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-white to-fasion-light relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="floating-element w-64 h-64 bg-fasion-accent top-10 -left-20"></div>
+        <div class="floating-element w-48 h-48 bg-fasion-accent bottom-20 -right-16"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl md:text-5xl font-serif font-bold text-fasion-primary mb-4">
+                    Luxury Gift Boxes
+                </h2>
+                <p class="text-lg text-fasion-gray max-w-3xl mx-auto leading-relaxed">
+                    Exquisitely curated collections of our finest dhup, agarbatti, and puja essentials. 
+                    Perfect for gifting to loved ones on special occasions with an aura of divine elegance.
+                </p>
+            </div>
+
+            <!-- Gift Boxes Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Gift Box 1 - Divine Blessings -->
+                <div class="luxury-card group">
+                    <div class="luxury-badge">
+                        <i class="fas fa-crown mr-1"></i> BEST SELLER
+                    </div>
+                    
+                    <!-- Product Image -->
+                    <div class="product-image bg-gradient-to-br from-amber-100 to-amber-50">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/g2.png?v=1760358740&width=600" 
+                             alt="Divine Blessings Gift Box" 
+                             class="w-64 h-64 object-contain duration-500 relative">
+                        
+                        <!-- Overlay Content -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 text-white">
+                            <h3 class="font-serif font-bold text-xl mb-1">Festive Sampler Gift Set: Gau Gulab, Jass Incense & Kapoor Attar</h3>
+                            <p class="text-sm opacity-90">Premium Spiritual Collection</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-serif font-bold text-fasion-primary mb-2">Festive Sampler Gift Set: Gau Gulab, Jass Incense & Kapoor Attar</h3>
+                                <div class="flex items-center text-amber-500 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span class="text-fasion-gray text-sm ml-2">4.7 (128 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-fasion-gray text-sm mb-4 leading-relaxed">
+                            A premium collection of sandalwood agarbatti, floral dhoop, and handcrafted diya set for a complete spiritual experience.
+                        </p>
+                        
+                        <!-- Features -->
+                        <div class="mb-6">
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                Gau Gulab
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                Jass Incense
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm">
+                                <i class="fas fa-check-circle text-fasion-accent mr-2"></i>
+                                Kapoor Attar
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing and CTA -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="price-tag">
+                                <span class="text-2xl font-bold">₹599</span>
+                                <span class="text-sm text-fasion-light-gray line-through ml-2">₹746</span>
+                            </div>
+                            <span class="discount-badge">19% OFF</span>
+                        </div>
+                        
+                        <a href="https://granthagarrbatti.co/products/festive-sampler-gift-set-gau-gulab-jass-incense-kapoor-attar" class="gold-button w-full py-3 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            View Product
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gift Box 2 - Festival Celebration -->
+                <div class="luxury-card group">
+                    <div class="luxury-badge" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                        <i class="fas fa-fire mr-1"></i> FESTIVAL SPECIAL
+                    </div>
+                    
+                    <!-- Product Image -->
+                    <div class="product-image bg-gradient-to-br from-red-100 to-orange-50">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/g1_14e49d61-397a-4618-93ca-34465d87e8a4.png?v=1760358825&width=600" 
+                             alt="Festival Celebration Gift Box" 
+                             class="w-64 h-64 object-contain duration-500 relative">
+                        
+                        <!-- Overlay Content -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 text-white">
+                            <h3 class="font-serif font-bold text-xl mb-1">Festival Celebration</h3>
+                            <p class="text-sm opacity-90">Perfect for Special Occasions</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-serif font-bold text-fasion-primary mb-2">Diwali Gift Box: Festive Purity</h3> <br>
+                                <div class="flex items-center text-amber-500 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="text-fasion-gray text-sm ml-2">5.0 (96 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-fasion-gray text-sm mb-4 leading-relaxed">
+                            Perfect for Diwali, Navratri, or any festive occasion. Includes special edition agarbatti, decorative diyas, and aromatic cones.
+                        </p>
+                        
+                        <!-- Features -->
+                        <div class="mb-6">
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                Trishul Masala
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                Flora Agarbatti
+                            </div>
+                            <div class="flex items-center text-fasion-gray text-sm">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                Divine room freshener spray
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing and CTA -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="price-tag">
+                                <span class="text-2xl font-bold">₹507</span>
+                                <span class="text-sm text-fasion-light-gray line-through ml-2">₹597</span>
+                            </div>
+                            <span class="discount-badge">20% OFF</span>
+                        </div>
+                        
+                        <a href="https://granthagarrbatti.co/products/diwali-gift-box-festive-purity" class="gold-button w-full py-3 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            View Product
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gift Box 3 - Meditation Essentials -->
+                <div class="luxury-card group">
+                    <div class="luxury-badge" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                        <i class="fas fa-spa mr-1"></i> NEW ARRIVAL
+                    </div>
+                    
+                    <!-- Product Image -->
+                    <div class="product-image bg-gradient-to-br from-purple-100 to-indigo-50">
+                        <img src="https://granthagarrbatti.co/cdn/shop/files/g2_2_1b6299af-905a-4bfb-9383-4a06265e182e_1024x1024.png?v=1760358074" 
+                             alt="Meditation Essentials Gift Box" 
+                             class="w-64 h-64 object-contain duration-500 relative">
+                        
+                        <!-- Overlay Content -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 text-white">
+                            <h3 class="font-serif font-bold text-xl mb-1">Granth Incense: Pure Diwali Celebration Moments</h3>
+                            <p class="text-sm opacity-90">Calming & Focus Enhancing</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-serif font-bold text-fasion-primary mb-2">Granth Incense: Pure Diwali Celebration Moments</h3>
+                                <div class="flex items-center text-amber-500 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="text-fasion-gray text-sm ml-2">4.3 (64 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-fasion-gray text-sm mb-4 leading-relaxed">
+                            Specially formulated incense and dhoop to enhance your meditation practice. Includes calming lavender and frankincense blends.
+                        </p>
+                        
+                        <!-- Features -->
+                        <div class="mb-6">
+                            <div class="flex items-center text-fasion-gray text-sm mb-2">
+                                <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                                Cow dung dhoop batti
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+                        
+                        <!-- Pricing and CTA -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="price-tag">
+                                <span class="text-sm text-fasion-accent font-semibold"> <i class="fa-regular fa-face-frown mr-2"></i>Out Of Stock</span>
+                            </div>
+                            <span class="discount-badge" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);">EXCLUSIVE</span>
+                        </div>
+                        
+                        <a href="https://granthagarrbatti.co/products/granth-incense-pure-diwali-celebration-moments" class="gold-button w-full py-3 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            View Product
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-16">
+                <a href="https://granthagarrbatti.co/collections/gifts" class="dark-button px-10 py-4 rounded-xl font-semibold flex items-center justify-center mx-auto">
+                    <i class="fas fa-gifts mr-2"></i>
+                    View All Gift Collections
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- banner image 4 -->
+   
+    <section class="image-banner-section">
+        <div class="banner-image">
+            <!-- Replace the image source with your own image -->
+            <img src="img/banner/premium-collection.png" alt="Beautiful landscape">
+        </div>
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <h2 class="banner-title">Discover Beauty</h2>
+                <p class="banner-subtitle">Explore the world's most stunning locations</p>
+                <button class="banner-button">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Products Section -->
+    <section class="py-20 gradient-bg relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-30">
+            <div class="absolute top-10 left-10 w-64 h-64 rounded-full border border-fashion-accent floating-element"></div>
+            <div class="absolute bottom-20 right-20 w-48 h-48 rounded-full border border-fashion-accent floating-element-delay"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full border border-fashion-accent opacity-20 floating-element" style="animation-delay: 4s;"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16 animate-fade-in">
+                <div class="inline-block mb-4">
+                    <span class="premium-badge bg-fashion-accent text-fashion-primary font-bold py-2 px-6 rounded-full text-sm uppercase tracking-widest">Exclusive Collection</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-fashion-dark mb-6">Premium Puja Essentials</h2>
+                <div class="w-24 h-1 bg-fashion-accent mx-auto mb-6"></div>
+                <p class="text-fashion-gray max-w-3xl mx-auto text-lg">Handcrafted with sacred ingredients and traditional methods, our premium collection elevates your spiritual practice.</p>
+            </div>
+
+            <!-- Features Bar -->
+            <div class="flex flex-wrap justify-center gap-6 mb-12">
+                <div class="flex items-center bg-white py-2 px-4 rounded-full shadow-fashion">
+                    <i class="fas fa-leaf text-fashion-accent mr-2"></i>
+                    <span class="text-sm font-medium">100% Natural Ingredients</span>
+                </div>
+                <div class="flex items-center bg-white py-2 px-4 rounded-full shadow-fashion">
+                    <i class="fas fa-hand-sparkles text-fashion-accent mr-2"></i>
+                    <span class="text-sm font-medium">Handcrafted</span>
+                </div>
+                <div class="flex items-center bg-white py-2 px-4 rounded-full shadow-fashion">
+                    <i class="fas fa-shipping-fast text-fashion-accent mr-2"></i>
+                    <span class="text-sm font-medium">Free Shipping</span>
+                </div>
+                <div class="flex items-center bg-white py-2 px-4 rounded-full shadow-fashion">
+                    <i class="fas fa-award text-fashion-accent mr-2"></i>
+                    <span class="text-sm font-medium">Premium Quality</span>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card rounded-2xl overflow-hidden shadow-luxury animate-slide-up">
+                    <div class="relative h-80 overflow-hidden">
+                        <div class="product-image w-full h-full" style="background-image: url('https://granthagarrbatti.co/cdn/shop/files/dhooop6_200x200.jpg?v=1748323850');"></div>
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-fashion-accent text-fashion-primary font-bold py-1 px-3 rounded-full text-xs">Bestseller</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-2xl font-serif font-bold text-white">Tulsi Kapoor- Bamboo less incense Sticks</h3>
+                            <div class="flex text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-white text-sm ml-2">(128)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 relative z-20">
+                        <p class="text-fashion-gray mb-6">Handcrafted with pure sandalwood extract, this premium incense offers a long-lasting, calming fragrance perfect for meditation.</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-serif font-bold text-fashion-accent">₹199</span>
+                                <span class="text-fashion-gray line-through text-sm ml-2">₹349</span>
+                            </div>
+                            <a href="https://granthagarrbatti.co/products/tulsi-kapoor" class="bg-fashion-primary text-white font-bold py-2 px-6 rounded-full hover:bg-fashion-dark transition-all duration-300 transform hover:scale-105 flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> View Product
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card rounded-2xl overflow-hidden shadow-luxury animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="relative h-80 overflow-hidden">
+                        <div class="product-image w-full h-full" style="background-image: url('https://granthagarrbatti.co/cdn/shop/files/c2_faa46715-344c-4695-8b68-1507e0397f6f.png?v=1760360445&width=600');"></div>
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-fashion-accent text-fashion-primary font-bold py-1 px-3 rounded-full text-xs">New</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-2xl font-serif font-bold text-white">Granth Luxury Diwali Sampler Gift Box</h3>
+                            <div class="flex text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white text-sm ml-2">(94)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 relative z-20">
+                        <p class="text-fashion-gray mb-6">A delicate blend of rose, jasmine, and lotus extracts that creates an uplifting atmosphere for your spiritual practices.</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-serif font-bold text-fashion-accent">₹199</span>
+                            </div>
+                            <a href="https://granthagarrbatti.co/products/granth-luxury-diwali-sampler-gift-box" class="bg-fashion-primary text-white font-bold py-2 px-6 rounded-full hover:bg-fashion-dark transition-all duration-300 transform hover:scale-105 flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> View Product
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card rounded-2xl overflow-hidden shadow-luxury animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="relative h-80 overflow-hidden">
+                        <div class="product-image w-full h-full" style="background-image: url('https://granthagarrbatti.co/cdn/shop/files/satya-stics_200x200.png?v=1755589100');"></div>
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-fashion-accent text-fashion-primary font-bold py-1 px-3 rounded-full text-xs">Premium</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-2xl font-serif font-bold text-white">Satya - Fragrance from 7 Chakra</h3>
+                            <div class="flex text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="text-white text-sm ml-2">(76)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 relative z-20">
+                        <p class="text-fashion-gray mb-6">A balanced combination of sacred herbs and resins that purifies the environment and enhances spiritual connection.</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-serif font-bold text-fashion-accent">₹199</span>
+                            </div>
+                            <a href="https://granthagarrbatti.co/products/satya-agarbatti" class="bg-fashion-primary text-white font-bold py-2 px-6 rounded-full hover:bg-fashion-dark transition-all duration-300 transform hover:scale-105 flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> View Product
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-serif font-bold text-fashion-dark text-center mb-8">What Our Customers Say</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="testimonial-card p-6 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-fashion-light-gray flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-fashion-gray"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Priya Sharma</h4>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray">"The Sandalwood Supreme has transformed my meditation practice. The fragrance is so pure and long-lasting!"</p>
+                    </div>
+                    <div class="testimonial-card p-6 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-fashion-light-gray flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-fashion-gray"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Rajesh Kumar</h4>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray">"Divine Harmony creates such a peaceful atmosphere in our home. The quality is exceptional."</p>
+                    </div>
+                    <div class="testimonial-card p-6 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-fashion-light-gray flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-fashion-gray"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Anita Patel</h4>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-fashion-gray">"Floral Essence is my new favorite! The floral notes are so authentic and not overpowering."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-16 animate-fade-in" style="animation-delay: 0.6s;">
+                <a href="#" class="inline-flex items-center bg-fashion-accent text-fashion-primary font-bold py-3 px-8 rounded-full hover:shadow-gold-glow transition-all duration-300 transform hover:scale-105">
+                    Explore Full Collection
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <p class="text-fashion-gray mt-4">Free shipping on orders above ₹999</p>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carousel functionality
+            const carouselSlides = document.querySelectorAll('.carousel-slide');
+            const carouselDots = document.querySelectorAll('.carousel-dot');
+            const prevButton = document.querySelector('.carousel-prev');
+            const nextButton = document.querySelector('.carousel-next');
+            let currentSlide = 0;
+            let autoSlideInterval;
+            
+            // Function to show a specific slide
+            function showSlide(index) {
+                // Hide all slides
+                carouselSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Remove active class from all dots
+                carouselDots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+                
+                // Show the selected slide
+                carouselSlides[index].classList.add('active');
+                
+                // Activate the corresponding dot
+                carouselDots[index].classList.add('active');
+                
+                currentSlide = index;
+            }
+            
+            // Function to show next slide
+            function nextSlide() {
+                let nextIndex = (currentSlide + 1) % carouselSlides.length;
+                showSlide(nextIndex);
+            }
+            
+            // Function to show previous slide
+            function prevSlide() {
+                let prevIndex = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
+                showSlide(prevIndex);
+            }
+            
+            // Set up auto-sliding
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+            
+            // Event listeners for dots
+            carouselDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    stopAutoSlide();
+                    showSlide(index);
+                    startAutoSlide();
+                });
+            });
+            
+            // Event listeners for arrows
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    stopAutoSlide();
+                    prevSlide();
+                    startAutoSlide();
+                });
+            }
+            
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    stopAutoSlide();
+                    nextSlide();
+                    startAutoSlide();
+                });
+            }
+            
+            // Initialize the carousel
+            showSlide(0);
+            startAutoSlide();
+            
+            // Pause auto-slide on hover
+            const carouselContainer = document.querySelector('.carousel-container');
+            if (carouselContainer) {
+                carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+                carouselContainer.addEventListener('mouseleave', startAutoSlide);
+            }
+            
+            // Add scroll animation to product cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-scale-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe product cards
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Add sparkle effects randomly
+            function createSparkle() {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 5 + 's';
+                document.querySelector('.hero-section').appendChild(sparkle);
+                
+                // Remove sparkle after animation completes
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 5000);
+            }
+            
+            // Create initial sparkles
+            for (let i = 0; i < 8; i++) {
+                setTimeout(createSparkle, i * 1000);
+            }
+            
+            // Continue creating sparkles
+            setInterval(createSparkle, 2000);
+        });
+
+        // Add intersection observer for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all product cards
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
