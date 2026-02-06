@@ -1,0 +1,45 @@
+1. Enchanted saloon:
+- Created impact report for vedhaan & enhanced saloon includes impact of vedhaan on their social media profiles.
+
+
+2. Granthagarbatti Redesign:
+-  Redesigned Entire website of Granthagarbatti with main page as well as perfume page. 
+-  Conflicts: CSS issue due to shopify inbuild CSS properties.
+
+
+3. Happy tots new website deployment:
+-  Fixed some errors in the website which will crash the website in production.
+-  Deployed Website on Cloudflare with domain connectivity and hosting providence.
+-  Website Link: https://happytotspreschool.in/
+
+4. ShivOm Investment
+-  Created logo and mockups for ShivOm Investment
+
+
+5. Vasu Sculpture
+-  Deployed vasu sculpture website on GitHub due to free hosting requirements.
+-  Website: https://vedhaan.github.io/vasusculpture/
+
+
+6. Vedhaan Technology Marketing & Graphics
+-  Created Vedhaan Technology marketing strategy including Instagram, Facebook, and LinkedIn. 
+-  Created graphics for social media post/story.
+-  Managing Vedhaan Technology Instagram, Facebook and LinkedIn.
+
+
+7. Vedhaan Technology official website.
+-  Redesigned entire vedhaan technology website with rapid performance, SEO keywords, and sales driven design.
+-  Managing website with latest trend and design.
+-  Website: https://vedhaan.com/
+
+8. World of Sugandh Blog
+-  Created WOS blogs with slider changing, content change and image change.
+-  Website: https://sugandh.co/blogs/blog/best-kurta-sets-for-women-in-2025-from-casual-to-party-wear
+-  Blog Topic: 
+   - Fabric & Fit Guide
+   - How to Style Ethnic Wear for Every Occasion
+   - seasonal-fashion-trends-2026
+   - Wedding Guest Outfit Ideas for Women in 2026 
+
+
+
