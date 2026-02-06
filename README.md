@@ -1,5 +1,5 @@
-# Vedhaan Technology — Work Summary  
-### September 2025 – February 2026
+# Vedhaan Technology | Work Summary  
+### September 2025 - February 2026
 
 This repository documents **professional work delivered between September 2025
 and February 2026** under **Vedhaan Technology**, with contributions by
